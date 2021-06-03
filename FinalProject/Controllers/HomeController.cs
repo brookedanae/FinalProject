@@ -13,14 +13,14 @@ namespace FinalProject.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IWeatherService _service;
-        private readonly ITicketmasterService _services;
+        private readonly IWeatherService _weatherService;
+        private readonly ITicketmasterService _ticketService;
 
-        public HomeController(ILogger<HomeController> logger, IWeatherService service, ITicketmasterService services)
+        public HomeController(ILogger<HomeController> logger, IWeatherService weatherService, ITicketmasterService services)
         {
             _logger = logger;
-            _service = service;
-            _services = services;
+            _weatherService = weatherService;
+            _ticketService = services;
         }
 
         public IActionResult Index()
