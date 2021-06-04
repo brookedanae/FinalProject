@@ -29,6 +29,11 @@ namespace FinalProject.Controllers
             return View();
         }
 
+        public IActionResult MainPage()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
