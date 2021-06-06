@@ -25,7 +25,10 @@ namespace FinalProject
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("SunnySeats")));
+            services.AddDbContext<ConcertsDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("SunnySeats")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
