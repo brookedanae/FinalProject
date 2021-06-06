@@ -14,5 +14,7 @@ namespace FinalProject.Models
         public int UserId { get; set; }
 
         public int ConcertId { get; set; }
+
+        public Concerts Concert { get; set; }
     }
 }

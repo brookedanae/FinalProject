@@ -1,8 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<FinalProject.Models.ConcertModel>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<form asp-controller="Home" asp-action="ConcertModel">
+    <label for="City">Enter your city: </label>
+    <input type="text" City="City" name="City" />
+    <button type="submit" class="btn btn">Search</button>
+</form>
