@@ -17,15 +17,16 @@ namespace FinalProject.Controllers
         private readonly IWeatherService _weatherService;
         private readonly ITicketmasterService _ticketService;
 
-        public HomeController(ILogger<HomeController> logger, IWeatherService weatherService, ITicketmasterService services)
+        public HomeController(ILogger<HomeController> logger, IWeatherService weatherService, ITicketmasterService ticketService)
         {
             _logger = logger;
             _weatherService = weatherService;
-            _ticketService = services;
+            _ticketService = ticketService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+
             return View();
         }
 
