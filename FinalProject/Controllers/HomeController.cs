@@ -24,8 +24,9 @@ namespace FinalProject.Controllers
             _ticketService = ticketService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+
             return View();
         }
 
