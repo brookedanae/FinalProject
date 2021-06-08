@@ -1,7 +1,30 @@
-﻿@model IEnumerable<FinalProject.Models.ConcertModel>
+﻿@model FinalProject.Models.SearchViewModel
 
-<form asp-controller="Home" asp-action="ConcertModel">
-    <label for="City">Enter your city: </label>
-    <input type="text" City="City" name="City" />
-    <button type="submit" class="btn btn">Search</button>
-</form>
+@*<form asp-controller="Home" asp-action="TMModel">
+    <label for="Postal Code">Enter your Postal Code: </label>
+    <input type="text" postalCode="postalCode" name="PostalCode" />
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>*@
+
+
+<h4>Search for a Concert</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Search">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="postalcode" class="control-label"></label>
+                <input asp-for="postalcode" class="form-control" />
+                <span asp-validation-for="postalcode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
