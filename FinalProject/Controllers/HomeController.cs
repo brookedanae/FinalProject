@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace FinalProject.Controllers
 {
     //Testing out our repo
@@ -26,7 +27,6 @@ namespace FinalProject.Controllers
 
         public async Task<IActionResult> Index()
         {
-
             return View();
         }
 
@@ -44,6 +44,14 @@ namespace FinalProject.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Search(SearchViewModel model)
+        {
+            var postalcode = await _ticketService.GetEventAsync(model.postalcode);
+            return View(postalcode);
         }
     }
 }
