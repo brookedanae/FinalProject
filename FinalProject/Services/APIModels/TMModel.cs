@@ -33,7 +33,7 @@ namespace FinalProject.Models
         public string pleaseNote { get; set; }
         public Pricerange[] priceRanges { get; set; }
         public Seatmap seatmap { get; set; }
-        public Accessibility accessibility { get; set; }
+        //public Accessibility accessibility { get; set; }
         public Ticketlimit ticketLimit { get; set; }
         public Agerestrictions ageRestrictions { get; set; }
         public _Links _links { get; set; }
@@ -109,13 +109,13 @@ namespace FinalProject.Models
         public string staticUrl { get; set; }
     }
 
-    public class Accessibility
-    {
-        public int ticketLimit { get; set; }
-        public string info { get; set; }
-        public string url { get; set; }
-        public string urlText { get; set; }
-    }
+    //public class Accessibility
+    //{
+    //    public int ticketLimit { get; set; }
+    //    public string info { get; set; }
+    //    public string url { get; set; }
+    //    public string urlText { get; set; }
+    //}
 
     public class Ticketlimit
     {
@@ -181,7 +181,7 @@ namespace FinalProject.Models
         public Upcomingevents upcomingEvents { get; set; }
         public _Links1 _links { get; set; }
         public Ada ada { get; set; }
-        public string[] aliases { get; set; }
+        //public string[] aliases { get; set; }
     }
 
     public class City
@@ -290,7 +290,7 @@ namespace FinalProject.Models
         public string url { get; set; }
         public string locale { get; set; }
         public Externallinks externalLinks { get; set; }
-        public string[] aliases { get; set; }
+        //public string[] aliases { get; set; }
         public Image1[] images { get; set; }
         public Classification[] classifications { get; set; }
         public Upcomingevents1 upcomingEvents { get; set; }

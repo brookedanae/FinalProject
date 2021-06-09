@@ -7,6 +7,6 @@ namespace FinalProject.Models
 {
     public class SearchViewModel
     {
-        public string postalcode { get; set; }
+        public string PostalCode { get; set; }
     }
 }
