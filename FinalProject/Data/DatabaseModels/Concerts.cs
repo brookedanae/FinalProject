@@ -11,7 +11,7 @@ namespace FinalProject.Models
         [Key]
         public int Id { get; set; }
 
-        public string ConcertName { get; set; }
+        public string Name { get; set; }
 
         public DateTime Date { get; set; }
 
@@ -19,8 +19,11 @@ namespace FinalProject.Models
 
         public string Weather { get; set; }
 
-        public string City { get; set; }
+        public string City { get; set; } //for weather data API
+
+        public string PostalCode { get; set; } //for event search
 
         public ICollection<UserConcerts> Concert { get; set; }
+           
     }
 }
