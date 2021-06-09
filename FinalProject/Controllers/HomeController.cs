@@ -46,12 +46,19 @@ namespace FinalProject.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [HttpPost]
+        public IActionResult Search()
+        {
+            return View();
+        }
 
+        [HttpPost]
         public async Task<IActionResult> Search(SearchViewModel model)
         {
-            var postalcode = await _ticketService.GetEventAsync(model.postalcode);
-            return View(postalcode);
+            var results = await _ticketService.GetEventAsync(model.PostalCode);
+
+            var model = results.Select(x => new SearchResultsViewModel(x._event.name));
+
+            return View("SearchResults", model);
         }
     }
 }
