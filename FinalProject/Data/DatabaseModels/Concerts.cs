@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FinalProject.Models
 {
@@ -10,6 +8,8 @@ namespace FinalProject.Models
     {
         [Key]
         public int Id { get; set; }
+
+        public string TicketMasterId { get; set; }
 
         public string Name { get; set; }
 
@@ -24,6 +24,5 @@ namespace FinalProject.Models
         public string PostalCode { get; set; } //for event search
 
         public ICollection<UserConcerts> Concert { get; set; }
-           
     }
 }

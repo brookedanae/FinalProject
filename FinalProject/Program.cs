@@ -1,13 +1,8 @@
 using FinalProject.Data;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FinalProject
 {
@@ -20,8 +15,8 @@ namespace FinalProject
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                var context = services.GetRequiredService<ConcertsDbContext>();
-                context.Database.EnsureCreated();
+                var context = services.GetRequiredService<ApplicationDbContext>();
+                context.Database.Migrate();
             }
 
             host.Run();

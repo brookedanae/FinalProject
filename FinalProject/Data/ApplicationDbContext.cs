@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using FinalProject.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FinalProject.Data
 {
@@ -12,5 +10,9 @@ namespace FinalProject.Data
             : base(options)
         {
         }
+
+        public DbSet<Concerts> Concerts { get; set; }
+
+        public DbSet<UserConcerts> UserConcerts { get; set; }
     }
 }
