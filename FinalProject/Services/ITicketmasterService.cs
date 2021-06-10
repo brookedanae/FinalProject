@@ -5,6 +5,6 @@ namespace FinalProject.Services
 {
     public interface ITicketmasterService
     {
-        Task<TMModel> GetEventAsync(string postalcode);
+        Task<EventsResponse> GetEventAsync(string postalcode);
     }
 }

@@ -1,17 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FinalProject.Models
 {
     public class SearchResultsViewModel
     {
-        public SearchResultsViewModel(string name)
-        {
-            Name = name;
-        }
+        public string TicketMasterId { get; set; }
 
-        public string Name { get; }
+        public string Name { get; set; }
+
+        public DateTime DateTime { get; set; }
+
+        public string Venue { get; set; }
+
+        public string State { get; set; }
+
+        public string City { get; set; }
     }
 }
