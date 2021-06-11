@@ -1,4 +1,4 @@
-﻿using FinalProject.Models;
+﻿using FinalProject.Services.APIModels;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Net.Http;

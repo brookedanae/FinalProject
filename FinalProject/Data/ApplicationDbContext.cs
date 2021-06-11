@@ -1,4 +1,4 @@
-﻿using FinalProject.Models;
+﻿using FinalProject.Data.DatabaseModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;

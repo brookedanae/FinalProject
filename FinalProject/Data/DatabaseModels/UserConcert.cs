@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace FinalProject.Models
+namespace FinalProject.Data.DatabaseModels
 {
     public class UserConcert
     {

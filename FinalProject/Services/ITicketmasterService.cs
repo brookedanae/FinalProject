@@ -1,4 +1,4 @@
-﻿using FinalProject.Models;
+﻿using FinalProject.Services.APIModels;
 using System.Threading.Tasks;
 
 namespace FinalProject.Services
