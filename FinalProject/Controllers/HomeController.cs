@@ -1,6 +1,7 @@
 ﻿using FinalProject.Data;
 using FinalProject.Models;
 using FinalProject.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -18,13 +19,15 @@ namespace FinalProject.Controllers
         private readonly IWeatherService _weatherService;
         private readonly ITicketmasterService _ticketService;
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public HomeController(ILogger<HomeController> logger, IWeatherService weatherService, ITicketmasterService ticketService, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger, IWeatherService weatherService, ITicketmasterService ticketService, ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _logger = logger;
             _weatherService = weatherService;
             _ticketService = ticketService;
             _context = context;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -67,14 +70,32 @@ namespace FinalProject.Controllers
 
         public async Task<IActionResult> AddEvent(SearchResultsViewModel search)
         {
-            var model = await _context.Where(x => Concerts.TicketMasterId);
-               
+            var concert = await _context.Concerts.FirstOrDefaultAsync(x => x.TicketMasterId == search.TicketMasterId);
+            if (concert == null)
+            {
+                concert = new Concert
+                {
+                    TicketMasterId = search.TicketMasterId,
+                    Name = search.Name,
+                    Date = search.DateTime,
+                    Venue = search.Venue,
+                    City = search.City,
+                    //PostalCode = search.po
+                    //Weather = search.w
+                };
+                _context.Concerts.Add(concert);
+            }
 
-            // Search Conerts table (via dbcontext) based on the ticketmasterid
-            // If it exist retrieve it, if not create a new one
-            // Add a new UserConcerts record via dbcontext with the new concert
-            
-            return View();
+            var userConcert = new UserConcert
+            {
+                Concert = concert,
+                User = await _userManager.GetUserAsync(User)
+            };
+
+            _context.UserConcerts.Add(userConcert);
+            await _context.SaveChangesAsync();
+
+            return View(search);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FinalProject.Models
 {
-    public class UserConcerts
+    public class UserConcert
     {
         [Key]
         public int Id { get; set; }
@@ -12,6 +12,6 @@ namespace FinalProject.Models
 
         public int ConcertId { get; set; }
 
-        public Concerts Concert { get; set; }
+        public Concert Concert { get; set; }
     }
 }

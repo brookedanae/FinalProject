@@ -1,6 +1,9 @@
 ﻿using FinalProject.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FinalProject.Data
 {
@@ -11,8 +14,8 @@ namespace FinalProject.Data
         {
         }
 
-        public DbSet<Concerts> Concerts { get; set; }
+        public DbSet<Concert> Concerts { get; set; }
 
-        public DbSet<UserConcerts> UserConcerts { get; set; }
+        public DbSet<UserConcert> UserConcerts { get; set; }
     }
 }

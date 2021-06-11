@@ -1,4 +1,5 @@
 ﻿using FinalProject.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -9,10 +10,12 @@ namespace FinalProject.Services
     public class TicketmasterService : ITicketmasterService
     {
         private readonly HttpClient _client;
+        private readonly IConfiguration _configuration;
 
-        public TicketmasterService(HttpClient client)
+        public TicketmasterService(HttpClient client, IConfiguration configuration)
         {
             _client = client;
+            _configuration = configuration;
         }
 
         public async Task<EventsResponse> GetEventAsync(string postalcode)
@@ -21,8 +24,8 @@ namespace FinalProject.Services
             var endTime = startTime.AddDays(30);
             var startTime_str = startTime.ToString("yyyy-MM-ddTHH:mm:ssZ");
             var endTime_str = endTime.ToString("yyyy-MM-ddTHH:mm:ssZ");
-
-            return await _client.GetFromJsonAsync<EventsResponse>($"/discovery/v2/events.json?postalCode={postalcode}&radius=50&unit=miles&startDateTime={startTime_str}&endDateTime={endTime_str}&apikey=czGJRJzt5nN3zpCP6tmKdUA6VF6SP7cf");
+            var key = _configuration["keys:Ticketmaster"];
+            return await _client.GetFromJsonAsync<EventsResponse>($"/discovery/v2/events.json?postalCode={postalcode}&radius=50&unit=miles&startDateTime={startTime_str}&endDateTime={endTime_str}&apikey={key}");
         }
     }
 }
