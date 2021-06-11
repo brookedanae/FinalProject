@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FinalProject.Models
 {
-    public class Concerts
+    public class Concert
     {
         [Key]
         public int Id { get; set; }
@@ -23,6 +23,6 @@ namespace FinalProject.Models
 
         public string PostalCode { get; set; } //for event search
 
-        public ICollection<UserConcerts> Concert { get; set; }
+        public ICollection<UserConcert> UserConcert { get; set; }
     }
 }

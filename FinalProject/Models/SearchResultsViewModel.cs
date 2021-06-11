@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace FinalProject.Models
 {
@@ -15,5 +16,7 @@ namespace FinalProject.Models
         public string State { get; set; }
 
         public string City { get; set; }
+
+        //public Concerts Itinerary { get; set; }
     }
 }
