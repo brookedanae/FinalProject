@@ -17,6 +17,8 @@ namespace FinalProject.Models
 
         public string City { get; set; }
 
+        public string Weather { get; set; }
+
         //public Concerts Itinerary { get; set; }
     }
 }

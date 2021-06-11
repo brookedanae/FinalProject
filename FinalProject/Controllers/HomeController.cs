@@ -1,6 +1,8 @@
 ﻿using FinalProject.Data;
+using FinalProject.Data.DatabaseModels;
 using FinalProject.Models;
 using FinalProject.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,10 +11,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-
 namespace FinalProject.Controllers
 {
     //Testing out our repo
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -55,6 +57,7 @@ namespace FinalProject.Controllers
         public async Task<IActionResult> Search(SearchViewModel search)
         {
             var results = await _ticketService.GetEventAsync(search.PostalCode);
+            var weatherResults = await _context._weatherService(search.PostalCode);
             var model = results._embedded?.events.Select(x => new SearchResultsViewModel
             {
                 TicketMasterId = x.id,
