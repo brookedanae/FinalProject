@@ -57,7 +57,7 @@ namespace FinalProject.Controllers
         public async Task<IActionResult> Search(SearchViewModel search)
         {
             var results = await _ticketService.GetEventAsync(search.PostalCode);
-            var weatherResults = await _context._weatherService(search.PostalCode);
+            //var weatherResults = await _context._weatherService(search.PostalCode);
             var model = results._embedded?.events.Select(x => new SearchResultsViewModel
             {
                 TicketMasterId = x.id,
@@ -66,6 +66,7 @@ namespace FinalProject.Controllers
                 Venue = x._embedded.venues.FirstOrDefault()?.name,
                 State = x._embedded.venues.FirstOrDefault()?.state.name,
                 City = x._embedded.venues.FirstOrDefault()?.city.name
+                
             });
 
             return View("SearchResults", model);
@@ -89,6 +90,7 @@ namespace FinalProject.Controllers
                 _context.Concerts.Add(concert);
             }
 
+            //this portion adds the user's ID into the new concert database entry (basically fills in the UserConcerts column)
             var userConcert = new UserConcert
             {
                 Concert = concert,
