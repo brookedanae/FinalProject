@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace FinalProject.Models
+namespace FinalProject.Data.DatabaseModels
 {
-    public class Concerts
+    public class Concert
     {
         [Key]
         public int Id { get; set; }
+
+        public string TicketMasterId { get; set; }
 
         public string Name { get; set; }
 
@@ -23,7 +23,6 @@ namespace FinalProject.Models
 
         public string PostalCode { get; set; } //for event search
 
-        public ICollection<UserConcerts> Concert { get; set; }
-           
+        public ICollection<UserConcert> UserConcert { get; set; }
     }
 }

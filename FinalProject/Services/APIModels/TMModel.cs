@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace FinalProject.Models
+namespace FinalProject.Services.APIModels
 {
-    public class TMModel
+    public class EventsResponse
     {
-        public Event _event { get; set; }
-
+        public _Embedded _embedded { get; set; }
+        public _Links3 _links { get; set; }
+        public Page page { get; set; }
     }
 
     public class _Embedded
@@ -32,14 +30,14 @@ namespace FinalProject.Models
         public Promoter1[] promoters { get; set; }
         public string pleaseNote { get; set; }
         public Pricerange[] priceRanges { get; set; }
+        public Product[] products { get; set; }
         public Seatmap seatmap { get; set; }
-        //public Accessibility accessibility { get; set; }
-        public Ticketlimit ticketLimit { get; set; }
+        public Accessibility accessibility { get; set; }
         public Agerestrictions ageRestrictions { get; set; }
         public _Links _links { get; set; }
         public _Embedded1 _embedded { get; set; }
+        public Ticketlimit ticketLimit { get; set; }
         public string info { get; set; }
-        public Product[] products { get; set; }
     }
 
     public class Sales
@@ -61,8 +59,6 @@ namespace FinalProject.Models
         public DateTime startDateTime { get; set; }
         public DateTime endDateTime { get; set; }
         public string name { get; set; }
-        public string description { get; set; }
-        public string url { get; set; }
     }
 
     public class Dates
@@ -71,7 +67,6 @@ namespace FinalProject.Models
         public string timezone { get; set; }
         public Status status { get; set; }
         public bool spanMultipleDays { get; set; }
-        public Initialstartdate initialStartDate { get; set; }
     }
 
     public class Start
@@ -90,13 +85,6 @@ namespace FinalProject.Models
         public string code { get; set; }
     }
 
-    public class Initialstartdate
-    {
-        public string localDate { get; set; }
-        public string localTime { get; set; }
-        public DateTime dateTime { get; set; }
-    }
-
     public class Promoter
     {
         public string id { get; set; }
@@ -109,16 +97,9 @@ namespace FinalProject.Models
         public string staticUrl { get; set; }
     }
 
-    //public class Accessibility
-    //{
-    //    public int ticketLimit { get; set; }
-    //    public string info { get; set; }
-    //    public string url { get; set; }
-    //    public string urlText { get; set; }
-    //}
-
-    public class Ticketlimit
+    public class Accessibility
     {
+        public int ticketLimit { get; set; }
         public string info { get; set; }
     }
 
@@ -173,15 +154,14 @@ namespace FinalProject.Models
         public Location location { get; set; }
         public Market[] markets { get; set; }
         public Dma[] dmas { get; set; }
-        public Social social { get; set; }
         public Boxofficeinfo boxOfficeInfo { get; set; }
         public string parkingDetail { get; set; }
         public string accessibleSeatingDetail { get; set; }
         public Generalinfo generalInfo { get; set; }
         public Upcomingevents upcomingEvents { get; set; }
         public _Links1 _links { get; set; }
+        public Social social { get; set; }
         public Ada ada { get; set; }
-        //public string[] aliases { get; set; }
     }
 
     public class City
@@ -204,7 +184,6 @@ namespace FinalProject.Models
     public class Address
     {
         public string line1 { get; set; }
-        public string line2 { get; set; }
     }
 
     public class Location
@@ -213,22 +192,12 @@ namespace FinalProject.Models
         public string latitude { get; set; }
     }
 
-    public class Social
-    {
-        public Twitter twitter { get; set; }
-    }
-
-    public class Twitter
-    {
-        public string handle { get; set; }
-    }
-
     public class Boxofficeinfo
     {
-        public string phoneNumberDetail { get; set; }
         public string openHoursDetail { get; set; }
         public string acceptedPaymentDetail { get; set; }
         public string willCallDetail { get; set; }
+        public string phoneNumberDetail { get; set; }
     }
 
     public class Generalinfo
@@ -251,6 +220,16 @@ namespace FinalProject.Models
     public class Self1
     {
         public string href { get; set; }
+    }
+
+    public class Social
+    {
+        public Twitter twitter { get; set; }
+    }
+
+    public class Twitter
+    {
+        public string handle { get; set; }
     }
 
     public class Ada
@@ -290,7 +269,7 @@ namespace FinalProject.Models
         public string url { get; set; }
         public string locale { get; set; }
         public Externallinks externalLinks { get; set; }
-        //public string[] aliases { get; set; }
+        public string[] aliases { get; set; }
         public Image1[] images { get; set; }
         public Classification[] classifications { get; set; }
         public Upcomingevents1 upcomingEvents { get; set; }
@@ -300,13 +279,10 @@ namespace FinalProject.Models
     public class Externallinks
     {
         public Twitter1[] twitter { get; set; }
-        public Facebook[] facebook { get; set; }
         public Wiki[] wiki { get; set; }
+        public Facebook[] facebook { get; set; }
         public Instagram[] instagram { get; set; }
         public Homepage[] homepage { get; set; }
-        public Itune[] itunes { get; set; }
-        public Lastfm[] lastfm { get; set; }
-        public Musicbrainz[] musicbrainz { get; set; }
     }
 
     public class Twitter1
@@ -314,12 +290,12 @@ namespace FinalProject.Models
         public string url { get; set; }
     }
 
-    public class Facebook
+    public class Wiki
     {
         public string url { get; set; }
     }
 
-    public class Wiki
+    public class Facebook
     {
         public string url { get; set; }
     }
@@ -332,21 +308,6 @@ namespace FinalProject.Models
     public class Homepage
     {
         public string url { get; set; }
-    }
-
-    public class Itune
-    {
-        public string url { get; set; }
-    }
-
-    public class Lastfm
-    {
-        public string url { get; set; }
-    }
-
-    public class Musicbrainz
-    {
-        public string id { get; set; }
     }
 
     public class Upcomingevents1
@@ -413,6 +374,11 @@ namespace FinalProject.Models
     {
         public string id { get; set; }
         public string name { get; set; }
+    }
+
+    public class Ticketlimit
+    {
+        public string info { get; set; }
     }
 
     public class Image2
