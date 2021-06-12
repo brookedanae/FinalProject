@@ -21,7 +21,7 @@ namespace FinalProject.Controllers
             _userManager = userManager;
         }
 
-        // GET: Concerts
+        // GET: Concerts: returns a personalized list of selected concerts (where the UserID matches in both databases)
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
