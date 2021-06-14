@@ -25,6 +25,7 @@ namespace FinalProject.Services
             var startTime_str = startTime.ToString("yyyy-MM-ddTHH:mm:ssZ");
             var endTime_str = endTime.ToString("yyyy-MM-ddTHH:mm:ssZ");
             var key = _configuration["keys:Ticketmaster"];
+
             return await _client.GetFromJsonAsync<EventsResponse>($"/discovery/v2/events.json?postalCode={postalcode}&radius=50&unit=miles&startDateTime={startTime_str}&endDateTime={endTime_str}&apikey={key}");
         }
     }

@@ -2,14 +2,15 @@
 {
     public class WeatherModel
     {
-
-        public class Rootobject
+        
+        public class WeatherApiResponse
         {
             public string cod { get; set; }
             public int message { get; set; }
             public int cnt { get; set; }
             public List[] list { get; set; }
             public City city { get; set; }
+
         }
 
         public class City
