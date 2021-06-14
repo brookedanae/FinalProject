@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -75,6 +76,8 @@ namespace FinalProject.Controllers
         public async Task<IActionResult> AddEvent(SearchResultsViewModel search)
         {
             var concert = await _context.Concerts.FirstOrDefaultAsync(x => x.TicketMasterId == search.TicketMasterId);
+            //var weatherResponse = await _weatherService.GetWeatherAsync(search.City);
+            //var temp = weatherResponse.list.FirstOrDefault(l => true/*l.dt_txt == some date );*/);
             if (concert == null)
             {
                 concert = new Concert
@@ -84,6 +87,7 @@ namespace FinalProject.Controllers
                     Date = search.DateTime,
                     Venue = search.Venue,
                     City = search.City,
+                    //Temp = weatherResponse
                     //PostalCode = search.po
                     //Weather = search.w
                 };
