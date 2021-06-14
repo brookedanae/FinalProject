@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -62,7 +63,7 @@ namespace FinalProject.Controllers
         public async Task<IActionResult> Search(SearchViewModel search)
         {
             var results = await _ticketService.GetEventAsync(search.PostalCode);
-            var weatherResults = await _context._weatherService(search.PostalCode);
+            //var weatherResults = await _context._weatherService(search.PostalCode);
             var model = results._embedded?.events.Select(x => new SearchResultsViewModel
             {
                 TicketMasterId = x.id,
@@ -71,6 +72,7 @@ namespace FinalProject.Controllers
                 Venue = x._embedded.venues.FirstOrDefault()?.name,
                 State = x._embedded.venues.FirstOrDefault()?.state.name,
                 City = x._embedded.venues.FirstOrDefault()?.city.name
+                
             });
 
             return View("SearchResults", model);
@@ -79,6 +81,8 @@ namespace FinalProject.Controllers
         public async Task<IActionResult> AddEvent(SearchResultsViewModel search)
         {
             var concert = await _context.Concerts.FirstOrDefaultAsync(x => x.TicketMasterId == search.TicketMasterId);
+            //var weatherResponse = await _weatherService.GetWeatherAsync(search.City);
+            //var temp = weatherResponse.list.FirstOrDefault(l => true/*l.dt_txt == some date );*/);
             if (concert == null)
             {
                 concert = new Concert
@@ -88,12 +92,14 @@ namespace FinalProject.Controllers
                     Date = search.DateTime,
                     Venue = search.Venue,
                     City = search.City,
+                    //Temp = weatherResponse
                     //PostalCode = search.po
                     //Weather = search.w
                 };
                 _context.Concerts.Add(concert);
             }
 
+            //this portion adds the user's ID into the new concert database entry (basically fills in the UserConcerts column)
             var userConcert = new UserConcert
             {
                 Concert = concert,
