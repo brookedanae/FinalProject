@@ -25,7 +25,7 @@ namespace FinalProject.Services
         {
             //api.openweathermap.org/data/2.5/forecast?q=detroit&units=imperial&cnt=14&appid=98b8d92440ce2b0125bd762549c2963f//
             var key = _configuration["keys:Weather"];
-            var apiUrl = $"data/2.5/forecast?q={city}&units=imperial&cnt=14&appid={key}";
+            var apiUrl = $"data/2.5/forecast?q={city}&units=imperial&cnt=200&appid={key}";
 
             return await _client.GetFromJsonAsync<WeatherApiResponse>(apiUrl);
         }
