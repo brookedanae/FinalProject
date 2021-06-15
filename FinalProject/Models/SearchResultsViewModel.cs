@@ -20,7 +20,10 @@ namespace FinalProject.Models
 
         public string City { get; set; }
 
-        public string Weather { get; set; }
+        public string Temperature { get; set; }
+
+        public string Forecast { get; set; }
+
 
         //public Concerts Itinerary { get; set; }
     }

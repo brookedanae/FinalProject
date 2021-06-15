@@ -19,10 +19,16 @@
                 @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Time)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Venue)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Weather)
+                @Html.DisplayNameFor(model => model.Temperature)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Forecast)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.City)
@@ -40,10 +46,16 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Venue)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Weather)
+                @Html.DisplayFor(modelItem => item.Temperature)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Forecast)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.City)

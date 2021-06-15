@@ -77,8 +77,8 @@ namespace FinalProject.Controllers
         public async Task<IActionResult> AddEvent(SearchResultsViewModel search)
         {
             var concert = await _context.Concerts.FirstOrDefaultAsync(x => x.TicketMasterId == search.TicketMasterId);
-            //var weatherResponse = await _weatherService.GetWeatherAsync(search.City);
-            //var temp = weatherResponse.list.FirstOrDefault(l => true/*l.dt_txt == some date );*/);
+            var weatherResponse = await _weatherService.GetWeatherAsync(search.City);
+            var weather = weatherResponse.list.FirstOrDefault(x => x.dt_txt.Contains(search.Date));
             if (concert == null)
             {
                 concert = new Concert
@@ -89,12 +89,13 @@ namespace FinalProject.Controllers
                     Time = search.Time,
                     Venue = search.Venue,
                     City = search.City,
-                    //Temp = weatherResponse
-                    //PostalCode = search.po
-                    //Weather = search.w
+                    Temperature = weather.main.temp.ToString(),
+                    Forecast = weather.weather.FirstOrDefault().description
                 };
                 _context.Concerts.Add(concert);
             }
+
+            
 
             var userConcert = new UserConcert
             {
