@@ -63,11 +63,13 @@ namespace FinalProject.Controllers
             {
                 TicketMasterId = x.id,
                 Name = x.name,
-                DateTime = x.dates.start.dateTime,
+                Date = x.dates.start.localDate,
+                Time = x.dates.start.localTime,
+                //DateTime = x.dates.start.dateTime,
                 Venue = x._embedded.venues.FirstOrDefault()?.name,
                 State = x._embedded.venues.FirstOrDefault()?.state.name,
                 City = x._embedded.venues.FirstOrDefault()?.city.name
-            });
+            }) ;
 
             return View("SearchResults", model);
         }
@@ -83,7 +85,8 @@ namespace FinalProject.Controllers
                 {
                     TicketMasterId = search.TicketMasterId,
                     Name = search.Name,
-                    Date = search.DateTime,
+                    Date = search.Date,
+                    Time = search.Time,
                     Venue = search.Venue,
                     City = search.City,
                     //Temp = weatherResponse
