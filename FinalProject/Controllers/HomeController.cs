@@ -64,12 +64,11 @@ namespace FinalProject.Controllers
                 TicketMasterId = x.id,
                 Name = x.name,
                 Date = x.dates.start.localDate,
-                Time = x.dates.start.localTime,
-                //DateTime = x.dates.start.dateTime,
+                Time = DateTime.TryParse(x.dates.start.localTime, out var time) ? time.ToString(@"hh\:mm\:ss tt") : null,
                 Venue = x._embedded.venues.FirstOrDefault()?.name,
                 State = x._embedded.venues.FirstOrDefault()?.state.name,
                 City = x._embedded.venues.FirstOrDefault()?.city.name
-            }) ;
+            });
 
             return View("SearchResults", model);
         }
@@ -89,13 +88,12 @@ namespace FinalProject.Controllers
                     Time = search.Time,
                     Venue = search.Venue,
                     City = search.City,
-                    Temperature = weather.main.temp.ToString(),
-                    Forecast = weather.weather.FirstOrDefault().description
+                    Temperature = weather?.main?.temp.ToString(),
+                    Forecast = weather?.weather?.FirstOrDefault()?.description
                 };
+
                 _context.Concerts.Add(concert);
             }
-
-            
 
             var userConcert = new UserConcert
             {
