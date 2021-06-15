@@ -95,8 +95,7 @@ namespace FinalProject.Controllers
                 _context.Concerts.Add(concert);
             }
 
-            
-
+            //this portion adds the user's ID into the new concert database entry (basically fills in the UserConcerts column)
             var userConcert = new UserConcert
             {
                 Concert = concert,
