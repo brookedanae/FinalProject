@@ -85,7 +85,7 @@ namespace FinalProject.Controllers
                     TicketMasterId = search.TicketMasterId,
                     Name = search.Name,
                     Date = search.Date,
-                    Time = search.Time,
+                    Time = DateTime.TryParse(search.Time, out var time) ? time.ToString(@"hh\:mm\:ss tt") : null,
                     Venue = search.Venue,
                     City = search.City,
                     Temperature = weather?.main?.temp.ToString(),
@@ -95,6 +95,7 @@ namespace FinalProject.Controllers
                 _context.Concerts.Add(concert);
             }
 
+            //this portion adds the user's ID into the new concert database entry (basically fills in the UserConcerts column)
             var userConcert = new UserConcert
             {
                 Concert = concert,
