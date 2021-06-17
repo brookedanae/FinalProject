@@ -73,7 +73,8 @@ namespace FinalProject.Controllers
                 Venue = x._embedded.venues.FirstOrDefault()?.name,
                 State = x._embedded.venues.FirstOrDefault()?.state.name,
                 City = x._embedded.venues.FirstOrDefault()?.city.name,
-                Url = x.images.FirstOrDefault(x => x.url.Contains("CUSTOM"))?.url ?? string.Empty
+                Url = x.images.FirstOrDefault(x => x.url.Contains("CUSTOM"))?.url ?? string.Empty,
+                SeatMap = x.url
             });
 
             return View("SearchResults", model);
@@ -97,6 +98,8 @@ namespace FinalProject.Controllers
                     City = search.City,
                     Temperature = weather?.main?.temp.ToString(),
                     Forecast = weather?.weather?.FirstOrDefault()?.description,
+                    State = search.State,
+                    SeatMap = search.SeatMap,
                     Url = search.Url
                 };
 
