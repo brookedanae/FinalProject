@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace FinalProject.Models
 {
@@ -8,6 +9,9 @@ namespace FinalProject.Models
         public string TicketMasterId { get; set; }
 
         public string Name { get; set; }
+
+        [Display(Name = "Photo")]
+        public string Url { get; set; }
 
         //public DateTime DateTime { get; set; }
 

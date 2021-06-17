@@ -16,6 +16,9 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Url)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
@@ -41,6 +44,10 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+                @*<img src="@item.Url" @item.Url.Contains("CUSTOM") />*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
