@@ -6,6 +6,7 @@ using FinalProject.Data;
 using FinalProject.Data.DatabaseModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using FinalProject.Services;
 
 namespace FinalProject.Controllers
 {
@@ -14,11 +15,13 @@ namespace FinalProject.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly ITicketmasterService _ticketService;
 
-        public ConcertsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public ConcertsController(ApplicationDbContext context, UserManager<IdentityUser> userManager, ITicketmasterService ticketService)
         {
             _context = context;
             _userManager = userManager;
+            _ticketService = ticketService;
         }
 
         // GET: Concerts: returns a personalized list of selected concerts (where the UserID matches in both databases)
@@ -26,6 +29,7 @@ namespace FinalProject.Controllers
         {
             var user = await _userManager.GetUserAsync(User);
             var results = await _context.UserConcerts.Where(x => x.User == user).Select(x => x.Concert).ToListAsync();
+            //var model = await _context.UserConcerts.Where(x => x.User == user).Select(x => x.Concert.Url).ToListAsync();
             return View(results);
         }
 

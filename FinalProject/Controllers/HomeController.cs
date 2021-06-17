@@ -67,7 +67,8 @@ namespace FinalProject.Controllers
                 Time = DateTime.TryParse(x.dates.start.localTime, out var time) ? time.ToString(@"hh\:mm\:ss tt") : null,
                 Venue = x._embedded.venues.FirstOrDefault()?.name,
                 State = x._embedded.venues.FirstOrDefault()?.state.name,
-                City = x._embedded.venues.FirstOrDefault()?.city.name
+                City = x._embedded.venues.FirstOrDefault()?.city.name,
+                Url = x.images.FirstOrDefault(x => x.url.Contains("CUSTOM"))?.url
             });
 
             return View("SearchResults", model);
