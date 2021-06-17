@@ -18,7 +18,7 @@ namespace FinalProject.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> _logger; //push
         private readonly IWeatherService _weatherService;
         private readonly ITicketmasterService _ticketService;
         private readonly ApplicationDbContext _context;
@@ -27,13 +27,18 @@ namespace FinalProject.Controllers
         public HomeController(ILogger<HomeController> logger, IWeatherService weatherService, ITicketmasterService ticketService, ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _logger = logger;
-            _weatherService = weatherService;
+            _weatherService = weatherService; 
             _ticketService = ticketService;
             _context = context;
             _userManager = userManager;
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult MainPage()
         {
             return View();
         }
