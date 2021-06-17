@@ -73,7 +73,7 @@ namespace FinalProject.Controllers
                 Venue = x._embedded.venues.FirstOrDefault()?.name,
                 State = x._embedded.venues.FirstOrDefault()?.state.name,
                 City = x._embedded.venues.FirstOrDefault()?.city.name,
-                Url = x.images.FirstOrDefault(x => x.url.Contains("CUSTOM"))?.url
+                Url = x.images.FirstOrDefault(x => x.url.Contains("CUSTOM"))?.url ?? string.Empty
             });
 
             return View("SearchResults", model);
@@ -84,6 +84,7 @@ namespace FinalProject.Controllers
             var concert = await _context.Concerts.FirstOrDefaultAsync(x => x.TicketMasterId == search.TicketMasterId);
             var weatherResponse = await _weatherService.GetWeatherAsync(search.City);
             var weather = weatherResponse.list.FirstOrDefault(x => x.dt_txt.Contains(search.Date));
+            // get events
             if (concert == null)
             {
                 concert = new Concert
@@ -95,7 +96,8 @@ namespace FinalProject.Controllers
                     Venue = search.Venue,
                     City = search.City,
                     Temperature = weather?.main?.temp.ToString(),
-                    Forecast = weather?.weather?.FirstOrDefault()?.description
+                    Forecast = weather?.weather?.FirstOrDefault()?.description,
+                    Url = search.Url
                 };
 
                 _context.Concerts.Add(concert);
