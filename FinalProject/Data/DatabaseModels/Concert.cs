@@ -29,8 +29,12 @@ namespace FinalProject.Data.DatabaseModels
 
         public string City { get; set; } //for weather data API
 
+        public string State { get; set; }
+
         public string PostalCode { get; set; } //for event search
 
         public ICollection<UserConcert> UserConcert { get; set; }
+
+        public string SeatMap { get; set; }
     }
 }

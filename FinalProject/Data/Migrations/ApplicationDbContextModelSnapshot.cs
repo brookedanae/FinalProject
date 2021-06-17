@@ -41,6 +41,12 @@ namespace FinalProject.Data.Migrations
                     b.Property<string>("PostalCode")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SeatMap")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Temperature")
                         .HasColumnType("nvarchar(max)");
 
