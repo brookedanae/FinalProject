@@ -67,7 +67,8 @@ namespace FinalProject.Controllers
                 Time = DateTime.TryParse(x.dates.start.localTime, out var time) ? time.ToString(@"hh\:mm\:ss tt") : null,
                 Venue = x._embedded.venues.FirstOrDefault()?.name,
                 State = x._embedded.venues.FirstOrDefault()?.state.name,
-                City = x._embedded.venues.FirstOrDefault()?.city.name
+                City = x._embedded.venues.FirstOrDefault()?.city.name,
+                SeatMap = x.url
             });
 
             return View("SearchResults", model);
@@ -89,7 +90,9 @@ namespace FinalProject.Controllers
                     Venue = search.Venue,
                     City = search.City,
                     Temperature = weather?.main?.temp.ToString(),
-                    Forecast = weather?.weather?.FirstOrDefault()?.description
+                    Forecast = weather?.weather?.FirstOrDefault()?.description,
+                    State = search.State,
+                    SeatMap = search.SeatMap
                 };
 
                 _context.Concerts.Add(concert);

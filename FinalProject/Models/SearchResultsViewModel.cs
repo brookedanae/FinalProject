@@ -24,6 +24,8 @@ namespace FinalProject.Models
 
         public string Forecast { get; set; }
 
+        public string SeatMap { get; set; }
+
 
         //public Concerts Itinerary { get; set; }
     }
