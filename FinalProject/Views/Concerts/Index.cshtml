@@ -3,6 +3,17 @@
 @{
     ViewData["Title"] = "My Concert Wishlist";
 }
+<style>
+    h1 {
+        text-align: center;
+    }
+    hover {
+        background-color: yellow;
+    }
+    tr:nth-child(even) {
+        background-color:lightblue;
+    }
+</style>
 
 <h1>My Concert Wishlist</h1>
 
@@ -14,6 +25,9 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Url)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Date)
@@ -44,6 +58,10 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+                @*<img src="@item.Url" @item.Url.Contains("CUSTOM") />*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)

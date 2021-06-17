@@ -13,6 +13,9 @@ namespace FinalProject.Data.DatabaseModels
 
         public string Name { get; set; }
 
+        [Display(Name = "Photo")]
+        public string Url { get; set; }
+
         //public DateTime Date { get; set; }
 
         public string Date { get; set; }
