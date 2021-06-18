@@ -33,9 +33,40 @@ namespace FinalProject.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var user = await _userManager.GetUserAsync(User);
+            var latest = await _context.UserConcerts
+                .Include(x => x.Concert)
+                .Where(x => x.User.Id == user.Id)
+                .OrderByDescending(x => x.Id)
+                .Select(x => x.Concert)
+                .FirstOrDefaultAsync();
+
+            var recommendations = await _ticketService.GetEventsByKeywordAsync(latest.Venue);
+            if (recommendations == null)
+            {
+                RedirectToAction("Index");
+            }
+
+
+            var model = recommendations._embedded?.events.Select(x => new SearchResultsViewModel
+            {
+                TicketMasterId = x.id,
+                Name = x.name,
+                Date = x.dates.start.localDate,
+                Time = DateTime.TryParse(x.dates.start.localTime, out var time) ? time.ToString(@"hh\:mm\:ss tt") : null,
+                Venue = x._embedded.venues.FirstOrDefault()?.name,
+                State = x._embedded.venues.FirstOrDefault()?.state.name,
+                City = x._embedded.venues.FirstOrDefault()?.city.name,
+                Url = x.images.FirstOrDefault(x => x.url.Contains("CUSTOM"))?.url ?? string.Empty,
+                SeatMap = x.url
+            });
+
+
+
+            return View(new HomeViewModel { Recommendations = model });
+            //return View();
         }
 
         public IActionResult MainPage()
@@ -63,7 +94,6 @@ namespace FinalProject.Controllers
         public async Task<IActionResult> Search(SearchViewModel search)
         {
             var results = await _ticketService.GetEventAsync(search.PostalCode);
-            //var weatherResults = await _context._weatherService(search.PostalCode);
             var model = results._embedded?.events.Select(x => new SearchResultsViewModel
             {
                 TicketMasterId = x.id,

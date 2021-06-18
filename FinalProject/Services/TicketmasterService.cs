@@ -28,5 +28,17 @@ namespace FinalProject.Services
 
             return await _client.GetFromJsonAsync<EventsResponse>($"/discovery/v2/events.json?postalCode={postalcode}&radius=50&unit=miles&startDateTime={startTime_str}&endDateTime={endTime_str}&apikey={key}");
         }
+
+        public async Task<EventsResponse> GetEventsByKeywordAsync(string keyword)
+        {
+            var startTime = DateTime.Now;
+            var endTime = startTime.AddDays(30);
+            var startTime_str = startTime.ToString("yyyy-MM-ddThh:mm:ssZ");
+            var endTime_str = endTime.ToString("yyyy-MM-ddThh:mm:ssZ");
+            var key = _configuration["keys:Ticketmaster"];
+
+            return await _client.GetFromJsonAsync<EventsResponse>($"/discovery/v2/events.json?keyword={keyword}&radius=50&unit=miles&startDateTime={startTime_str}&endDateTime={endTime_str}&apikey={key}");
+
+        }
     }
 }
