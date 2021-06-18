@@ -28,8 +28,10 @@ namespace FinalProject.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
-            var userConerts = _context.UserConcerts.ToList();
-            var concerts = userConerts.Where(x => x.User.Id == user.Id).Select(x => x.Concert);
+            var concerts = _context.UserConcerts
+                .Include(x => x.Concert)
+                .Where(x => x.User.Id == user.Id)
+                .Select(x => x.Concert);
 
             //var model = await _context.UserConcerts.Where(x => x.User == user).Select(x => x.Concert.Url).ToListAsync();
             return View(concerts);
