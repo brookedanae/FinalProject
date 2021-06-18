@@ -6,5 +6,6 @@ namespace FinalProject.Services
     public interface ITicketmasterService
     {
         Task<EventsResponse> GetEventAsync(string postalcode);
+        Task<EventsResponse> GetEventsByKeywordAsync(string keyword);
     }
 }

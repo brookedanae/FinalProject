@@ -47,35 +47,46 @@
     <tbody>
         @if (Model != null)
         {
-            @foreach (var item in Model)
+        @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        <img src="@item.Url" @item.Url.Contains("CUSTOM") />
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Date)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Time)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Venue)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.State)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.City)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Add Event", "AddEvent", item)
-                    </td>
-                </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <img src="@item.Url" @item.Url.Contains("CUSTOM") />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Venue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.ActionLink("Add Event", "AddEvent", item)
+            </td>
+        </tr>
             }
+
         }
+        else
+            {
+        <br />
+        <h5><font color="orange">No concerts available near you - check back soon or try a different zip code!</font></h5>
+        <br />
+            }
+        <p>
+            <a asp-controller="Home" asp-action="Index">Back to Search</a>
+        </p>
+        <br />
     </tbody>
 </table>

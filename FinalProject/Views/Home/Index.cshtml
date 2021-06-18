@@ -1,9 +1,10 @@
-﻿@model FinalProject.Models.SearchViewModel
+﻿@model FinalProject.Models.HomeViewModel
 
 <style>
     h1 {
         text-align: center;
     }
+
     h4 {
         text-align: center;
     }
@@ -11,12 +12,12 @@
     div {
         text-align: center;
     }
+
     hover {
         background-color: yellow;
     }
-   
 </style>
-  
+
 
 <h4>Search for a Concert</h4>
 <hr />
@@ -25,9 +26,9 @@
         <form asp-action="Search">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="PostalCode" class="control-label"></label>
-                <input asp-for="PostalCode" class="form-control" />
-                <span asp-validation-for="PostalCode" class="text-danger"></span>
+                <label asp-for="Search.PostalCode" class="control-label"></label>
+                <input asp-for="Search.PostalCode" class="form-control" />
+                <span asp-validation-for="Search.PostalCode" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Search" class="btn btn-primary" align="center" />
@@ -35,6 +36,11 @@
         </form>
     </div>
 </div>
+
+@foreach (var item in Model.Recommendations)
+{
+    <span>@(item.Name)</span>
+}
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
