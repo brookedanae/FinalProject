@@ -18,7 +18,7 @@
 <h1>My Concert Wishlist</h1>
 
 <p>
-    <a asp-controller="Home" asp-action="Search">Back to Search</a>
+    <a asp-controller="Home" asp-action="Index">Back to Search</a>
 </p>
 <table class="table">
     <thead>
@@ -88,7 +88,7 @@
                 @Html.ExternalLink(modelItem => item.SeatMap, "Buy Tickets")
             </td>*@
         <td>
-            <a href="http://@item.SeatMap">Buy Tickets</a> |
+            <a href="@item.SeatMap">Buy Tickets</a> |
             <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
             <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
         </td>
