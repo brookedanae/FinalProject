@@ -62,12 +62,20 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Temperature)
+            @if (@Model.Temperature == null)
+            {
+                <h6 style="font-weight: 400">Check back soon!</h6>
+            }
         </dd>
         <dt class="col-sm-2 offset-2">
             @Html.DisplayNameFor(model => model.Forecast)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Forecast)
+            @if (@Model.Forecast == null)
+            {
+                <h6 style="font-weight: 400">Check back soon!</h6>
+            }
         </dd>
         <dt class="col-sm-2 offset-2">
             @Html.DisplayNameFor(model => model.City)

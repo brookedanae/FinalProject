@@ -74,9 +74,17 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Temperature)
+                @if (item.Temperature == null)
+                {
+                <h6 style="font-weight: 400">Check back soon!</h6>
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Forecast)
+                @if (item.Forecast == null)
+                {
+                    <h6 style="font-weight: 400">Check back soon!</h6>
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.City)

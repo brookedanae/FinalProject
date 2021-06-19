@@ -2,6 +2,7 @@
 using FinalProject.Data.DatabaseModels;
 using FinalProject.Models;
 using FinalProject.Services;
+using FinalProject.Services.APIModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
