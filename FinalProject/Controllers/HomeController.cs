@@ -61,7 +61,7 @@ namespace FinalProject.Controllers
                 State = x._embedded.venues.FirstOrDefault()?.state.name,
                 City = x._embedded.venues.FirstOrDefault()?.city.name,
                 Url = x.images.FirstOrDefault(x => x.url.Contains("CUSTOM"))?.url ?? string.Empty,
-                SeatMap = x.url
+                Tickets = x.url
             });
 
 
@@ -105,7 +105,7 @@ namespace FinalProject.Controllers
                 State = x._embedded.venues.FirstOrDefault()?.state.name,
                 City = x._embedded.venues.FirstOrDefault()?.city.name,
                 Url = x.images.FirstOrDefault(x => x.url.Contains("CUSTOM"))?.url ?? string.Empty,
-                SeatMap = x.url
+                Tickets = x.url
             });
 
             return View("SearchResults", model);
@@ -130,7 +130,7 @@ namespace FinalProject.Controllers
                     Temperature = weather?.main?.temp.ToString(),
                     Forecast = weather?.weather?.FirstOrDefault()?.description,
                     State = search.State,
-                    SeatMap = search.SeatMap,
+                    SeatMap = search.Tickets,
                     Url = search.Url
                 };
 
