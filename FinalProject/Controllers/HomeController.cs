@@ -2,7 +2,6 @@
 using FinalProject.Data.DatabaseModels;
 using FinalProject.Models;
 using FinalProject.Services;
-using FinalProject.Services.APIModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -61,7 +60,7 @@ namespace FinalProject.Controllers
                 State = x._embedded.venues.FirstOrDefault()?.state.name,
                 City = x._embedded.venues.FirstOrDefault()?.city.name,
                 Url = x.images.FirstOrDefault(x => x.url.Contains("CUSTOM"))?.url ?? string.Empty,
-                Tickets = x.url
+                SeatMap = x.url
             });
 
 
@@ -79,7 +78,7 @@ namespace FinalProject.Controllers
         {
             return View();
         }
-
+         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -105,7 +104,7 @@ namespace FinalProject.Controllers
                 State = x._embedded.venues.FirstOrDefault()?.state.name,
                 City = x._embedded.venues.FirstOrDefault()?.city.name,
                 Url = x.images.FirstOrDefault(x => x.url.Contains("CUSTOM"))?.url ?? string.Empty,
-                Tickets = x.url
+                SeatMap = x.url
             });
 
             return View("SearchResults", model);
@@ -130,7 +129,7 @@ namespace FinalProject.Controllers
                     Temperature = weather?.main?.temp.ToString(),
                     Forecast = weather?.weather?.FirstOrDefault()?.description,
                     State = search.State,
-                    SeatMap = search.Tickets,
+                    SeatMap = search.SeatMap,
                     Url = search.Url
                 };
 
