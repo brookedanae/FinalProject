@@ -3,6 +3,7 @@
 <style>
     h1 {
         text-align: center;
+        
     }
     h3{
         text-align: center;
@@ -12,6 +13,15 @@
     h4 {
         text-align: center;
     }
+    h3 {
+        text-align: center;
+        color: purple;
+    }
+
+    h6 {
+        text-align: center;
+        color: purple;
+    }
 
     div {
         text-align: center;
@@ -19,6 +29,12 @@
 
     hover {
         background-color: yellow;
+    }
+
+    .carousel-caption {
+        position: relative;
+        left: auto;
+        right: auto;
     }
 </style>
 
@@ -31,7 +47,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Search.PostalCode" class="control-label"></label>
-                <input asp-for="Search.PostalCode" class="form-control" />
+                <input asp-for="Search.PostalCode" class="form-control col-4 offset-4" />
                 <span asp-validation-for="Search.PostalCode" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -49,14 +65,16 @@
         }
         @foreach (var item in Model.Recommendations)
         {
-        <div class="carousel-item @(first?Html.Raw("active"):Html.Raw(""))">
-            <img src="@item.Url" alt="@item.Name">
-            <div class="carousel-caption">
-                <h3>@item.Name</h3>
+            <div class="carousel-item @(first?Html.Raw("active"):Html.Raw(""))">
+                <img src="@item.Url" alt="@item.Name">
+
+                <div class="carousel-caption">
+                        <h6>@item.Name</h6>
+                    </div>
             </div>
-        </div>
             first = false;
         }
+
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
        data-slide="prev">
@@ -68,11 +86,8 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
+    
 </div>
-@*@foreach (var item in Model.Recommendations)
-{
-    <span>@(item.Name)</span>
-}*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
