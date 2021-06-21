@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using FinalProject.Services.APIModels;
 
 namespace FinalProject.Controllers
 {
@@ -43,30 +45,36 @@ namespace FinalProject.Controllers
                 .Select(x => x.Concert)
                 .FirstOrDefaultAsync();
 
-            var recommendations = await _ticketService.GetEventsByKeywordAsync(latest.Venue);
-            if (recommendations == null)
+            if (latest == null)
             {
-                RedirectToAction("Index");
+                return View(new HomeViewModel { Recommendations = new List<SearchResultsViewModel>() });
+            }
+
+            var recommendations = await _ticketService.GetEventsByKeywordAsync(latest.Venue);
+            if (recommendations != null)
+            {
+                //RedirectToAction("Index");
+                var model = recommendations._embedded?.events.Select(x => new SearchResultsViewModel
+                {
+                    TicketMasterId = x.id,
+                    Name = x.name,
+                    Date = x.dates.start.localDate,
+                    Time = DateTime.TryParse(x.dates.start.localTime, out var time) ? time.ToString(@"hh\:mm\:ss tt") : null,
+                    Venue = x._embedded.venues.FirstOrDefault()?.name,
+                    State = x._embedded.venues.FirstOrDefault()?.state.name,
+                    City = x._embedded.venues.FirstOrDefault()?.city.name,
+                    Url = x.images.FirstOrDefault(x => x.url.Contains("CUSTOM"))?.url ?? string.Empty,
+                    SeatMap = x.url
+                });
+
+
+
+                return View(new HomeViewModel { Recommendations = model });
             }
 
 
-            var model = recommendations._embedded?.events.Select(x => new SearchResultsViewModel
-            {
-                TicketMasterId = x.id,
-                Name = x.name,
-                Date = x.dates.start.localDate,
-                Time = DateTime.TryParse(x.dates.start.localTime, out var time) ? time.ToString(@"hh\:mm\:ss tt") : null,
-                Venue = x._embedded.venues.FirstOrDefault()?.name,
-                State = x._embedded.venues.FirstOrDefault()?.state.name,
-                City = x._embedded.venues.FirstOrDefault()?.city.name,
-                Url = x.images.FirstOrDefault(x => x.url.Contains("CUSTOM"))?.url ?? string.Empty,
-                SeatMap = x.url
-            });
-
-
-
-            return View(new HomeViewModel { Recommendations = model });
-            //return View();
+            
+            return View();
         }
 
         public IActionResult MainPage()
