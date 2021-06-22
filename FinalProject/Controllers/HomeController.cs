@@ -123,7 +123,6 @@ namespace FinalProject.Controllers
             var concert = await _context.Concerts.FirstOrDefaultAsync(x => x.TicketMasterId == search.TicketMasterId);
             var weatherResponse = await _weatherService.GetWeatherAsync(search.City);
             var weather = weatherResponse.list.FirstOrDefault(x => x.dt_txt.Contains(search.Date));
-            // get events
             if (concert == null)
             {
                 concert = new Concert
@@ -134,7 +133,7 @@ namespace FinalProject.Controllers
                     Time = DateTime.TryParse(search.Time, out var time) ? time.ToString(@"hh\:mm\:ss tt") : null,
                     Venue = search.Venue,
                     City = search.City,
-                    Temperature = weather?.main?.temp.ToString(),
+                    Temperature = weather?.main?.temp.ToString("0"),
                     Forecast = weather?.weather?.FirstOrDefault()?.description,
                     State = search.State,
                     SeatMap = search.SeatMap,
