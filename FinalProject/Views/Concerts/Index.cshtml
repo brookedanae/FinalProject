@@ -13,12 +13,6 @@
     tr:nth-child(even) {
         background-color:lightblue;
     }
-    td {
-        font-size: 16px;
-        font-weight: bold;
-        text-align: center;
-        vertical-align: middle;
-    }
 </style>
 
 <h1>My Concert Wishlist</h1>
@@ -66,7 +60,6 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @*@Html.DisplayFor(modelItem => item.Url)*@
                 <img src="@item.Url" />
             </td>
             <td>
@@ -78,12 +71,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Venue)
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Temperature)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Forecast)
-            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.City)
             </td>
@@ -94,19 +81,16 @@
                 @Html.DisplayFor(modelItem => item.Temperature)
                 @if (item.Temperature == null)
                 {
-                    <h6 style="font-weight: 400">Check back soon!</h6>
+                    <p>Check back soon!</p>
                 }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Forecast)
                 @if (item.Forecast == null)
                 {
-                    <h6 style="font-weight: 400">Check back soon!</h6>
+                    <p>Check back soon!</p>
                 }
             </td>
-            @*<td>
-            @Html.ExternalLink(modelItem => item.SeatMap, "Buy Tickets")
-        </td>*@
             <td>
                 <a href="@item.SeatMap">Buy Tickets</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
